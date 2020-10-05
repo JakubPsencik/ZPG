@@ -7,7 +7,7 @@ class Application
 {
 
 	private:
-		
+	
 		/*stored instance*/
 		static Application* _instance;
 
@@ -30,7 +30,6 @@ class Application
 		/*static access method*/
 		static Application* getInstance();
 
-
 		static void appSetErrorCallback(int error, const char* description);
 		static void appSetKeyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
 		static void appSetCursorPosCallback(GLFWwindow* window, double mouseXPos, double mouseYPos);
@@ -38,8 +37,5 @@ class Application
 		static void appSetWindowFocusCallback(GLFWwindow* window, int focused);
 		static void appSetWindowIconifyCallback(GLFWwindow* window, int iconified);
 		static void appSetWindowSizeCallback(GLFWwindow* window, int width, int height);
-
-
-
 };
 
