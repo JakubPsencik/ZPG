@@ -1,15 +1,24 @@
 #pragma once
-
+#include "OpenGL_libraries.h"
 #include <iostream>
-#include <GLFW\glfw3.h>
+#include <stdlib.h>
+#include <stdio.h>
+/*#include "Object.h"
+#include "Shader.h"*/
+/*#include "VertexShader.h"
+#include "FragmentShader.h"*/
 
 class Application
 {
-
-	private:
-	
+	private:		
 		/*stored instance*/
-		static Application* _instance;
+		static Application* instance_;
+
+		GLFWwindow *window_;
+		int width_;
+		int height_;
+
+		GLuint shaderProgram_;
 
 		void error_callback(int error, const char* description);
 		void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
@@ -27,15 +36,15 @@ class Application
 
 	public:
 
+		// Singletons should not be cloneable.
+		Application(Application& other) = delete;
+		// Singletons should not be assignable.
+		void operator = (Application& other) = delete;
 		/*static access method*/
 		static Application* getInstance();
-
-		static void appSetErrorCallback(int error, const char* description);
-		static void appSetKeyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
-		static void appSetCursorPosCallback(GLFWwindow* window, double mouseXPos, double mouseYPos);
-		static void appSetMouseButtonCallback(GLFWwindow* window, int button, int action, int mode);
-		static void appSetWindowFocusCallback(GLFWwindow* window, int focused);
-		static void appSetWindowIconifyCallback(GLFWwindow* window, int iconified);
-		static void appSetWindowSizeCallback(GLFWwindow* window, int width, int height);
+		void appSetGLFWCallbacks();
+		void appSetErrorCallback();
+		void run();
+		void resize(glm::mat4 *Matrix, float points[], float scale, bool increasing);
 };
 
